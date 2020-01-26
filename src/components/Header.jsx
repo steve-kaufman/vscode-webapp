@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Header = () => (
+const Header = props => (
     <nav>
-        <h1>This is a web app</h1>
+        <h3>My Web App</h3>
     </nav>
 )
 

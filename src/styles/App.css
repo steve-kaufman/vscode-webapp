@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding-left: 25px;
+    background: #013;
+    color: white;
+}
+
+header h3 {
+    margin: 0
+}
