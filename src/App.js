@@ -4,6 +4,16 @@ import Header from './components/Header.jsx'
 import TodoForm from './components/TodoForm'
 
 export default class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      todos: {}
+    }
+    const req = new Request()
+    // TODO finish constructor
+    // fetch('/todo', )
+  }
+
   addTodo (todo) {
     fetch('/todo')
   }
