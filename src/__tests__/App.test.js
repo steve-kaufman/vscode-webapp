@@ -2,25 +2,24 @@ import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import App from '../App'
-import Constants from '../Constants'
 
 afterEach(cleanup)
 
 describe("App", () => {
     
     it("Has <header>", () => {
-        const app = render(<App />).container.firstChild
-        const header = app.querySelector('header')
+        const { container } = render(<App />)
+        const header = container.querySelector('header')
         expect(header).not.toBeNull()
     })
     it("Has <main>", () => {
-        const app = render(<App />).container.firstChild
-        const main = app.querySelector('main')
+        const { container } = render(<App />)
+        const main = container.querySelector('main')
         expect(main).not.toBeNull()
     })
     it("Has <footer>", () => {
-        const app = render(<App />).container.firstChild
-        const footer = app.querySelector('footer')
+        const { container } = render(<App />)
+        const footer = container.querySelector('footer')
         expect(footer).not.toBeNull()
     })
 

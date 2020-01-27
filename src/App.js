@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import Header from './components/Header.jsx'
-import AddTodo from './components/AddTodo';
+import TodoForm from './components/TodoForm';
 
 export default class App extends Component {
   addTodo(todo) {
@@ -14,7 +14,7 @@ export default class App extends Component {
           <Header />
         </header>
         <main>
-          <AddTodo onSubmit={this.addTodo.bind(this)} />
+          <TodoForm onSubmit={this.addTodo.bind(this)} />
         </main>
         <footer></footer>
       </div>

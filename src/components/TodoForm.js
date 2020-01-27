@@ -1,24 +1,27 @@
 import React, { Component } from 'react'
 import '../styles/AddTodo.css'
 
-export default class AddTodo extends Component {
+export default class TodoForm extends Component {
     onSubmit(e){
         e.preventDefault()
         const { title, description } = e.target.elements
-        this.props.onSubmit({
+        this.props.addTodo({
             title: title.value,
             description: description.value
         })
     }
     render(){
         return (
-            <div>
+            <div data-testid="addTodo">
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <label htmlFor="title">Title:</label>
-                    <input id="title" />
+                    <input data-testid="title" id="title" />
                     <label htmlFor="description">Description:</label>
-                    <input id="description" />
-                    <button type="submit">Submit</button>
+                    <input data-testid="description" id="description" />
+                    <button 
+                        data-testid="submit-button" 
+                        type="submit"
+                    >Submit</button>
                 </form>
             </div>
         )
