@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import './styles/App.css';
+import React, { Component } from 'react'
+import './styles/App.css'
 import Header from './components/Header.jsx'
-import TodoForm from './components/TodoForm';
+import TodoForm from './components/TodoForm'
 
 export default class App extends Component {
-  addTodo(todo) {
+  addTodo (todo) {
     fetch('/todo')
   }
-  render() {
+
+  render () {
     return (
       <div className="App">
         <header>
@@ -18,6 +19,6 @@ export default class App extends Component {
         </main>
         <footer></footer>
       </div>
-    );
+    )
   }
 }
