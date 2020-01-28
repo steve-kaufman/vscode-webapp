@@ -1,10 +1,13 @@
 import React from 'react'
 import { render, cleanup } from '@testing-library/react'
+import TestRenderer from 'react-test-renderer'
 import '@testing-library/jest-dom/extend-expect'
 import App from '../App'
 
 describe('App', () => {
   let app = null
+
+  const mockFetch = 
 
   afterEach(cleanup)
 
@@ -39,7 +42,8 @@ describe('App', () => {
 
   it('Gets todos from REST API', () => {
     // arrange
-    const { rerender } = app
+    const { unmount } = app
+    unmount()
     const fakeTodos = [
       { id: 0, title: 'title1', description: 'description1', completed: false },
       { id: 1, title: 'title2', description: 'description2', completed: true }
@@ -49,8 +53,9 @@ describe('App', () => {
         json: () => Promise.resolve(fakeTodos)
       })
     })
+    mockFetch.mockClear()
     // act
-    rerender(<App />)
+    render(<App />)
     // assert
     expect(mockFetch).toHaveBeenCalledTimes(1)
   })
@@ -58,13 +63,14 @@ describe('App', () => {
   describe('addTodo()', () => {
     it('Calls fetch()', () => {
       // arrange
+      app = TestRenderer.create(<App />).getInstance()
       const fakeTodo = { title: 'foo', description: 'bar' }
-      app = new App()
       const mockFetch = jest.spyOn(window, 'fetch').mockImplementationOnce(() => {
         return Promise.resolve({
           json: () => Promise.resolve(fakeTodo)
         })
       })
+      mockFetch.mockClear()
       // act
       app.addTodo(fakeTodo)
       // assert

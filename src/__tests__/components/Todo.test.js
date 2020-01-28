@@ -104,16 +104,17 @@ describe('Todo', () => {
       expect(setCompleted).toHaveBeenCalledWith(dummyData.id, true)
     })
     it('Calls setComplete() when unchecked with false', () => {
-      const completedIsTrue = { ...dummyData, completed: true }
+      // arrange
       const { queryByTestId, rerender } = todo
+      const completedIsTrue = { ...dummyData, completed: true }
       rerender(<Todo
         setCompleted={setCompleted}
         deleteTodo={deleteTodo}
         data={completedIsTrue}
       />)
-
+      // act
       queryByTestId('checkbox').click()
-
+      // assert
       expect(setCompleted).toHaveBeenCalledTimes(1)
       expect(setCompleted).toHaveBeenCalledWith(dummyData.id, false)
     })
@@ -121,13 +122,19 @@ describe('Todo', () => {
 
   describe('Delete button', () => {
     it('Exists', () => {
+      // arrange
       const { queryByTestId } = todo
+      // act
       const deleteButton = queryByTestId('delete-button')
+      // assert
       expect(deleteButton).not.toBeNull()
     })
     it('Calls deleteSelf() when clicked', () => {
+      // arrange
       const { queryByTestId } = todo
+      // act
       queryByTestId('delete-button').click()
+      // assert
       expect(deleteTodo).toHaveBeenCalledTimes(1)
       expect(deleteTodo).toHaveBeenCalledWith(dummyData.id)
     })

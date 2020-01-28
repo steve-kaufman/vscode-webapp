@@ -44,12 +44,10 @@ describe('TodoForm', () => {
     it('Calls addTodo() once when clicked', () => {
       // arrange
       const { getByTestId } = todoForm
-
       // act
       getByTestId('title').value = 'foo'
       getByTestId('description').value = 'bar'
       getByTestId('submit-button').click()
-
       // assert
       expect(addTodo).toHaveBeenCalledTimes(1)
       expect(addTodo).toHaveBeenCalledWith({

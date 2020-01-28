@@ -9,9 +9,7 @@ export default class App extends Component {
     this.state = {
       todos: {}
     }
-    const req = new Request()
-    // TODO finish constructor
-    // fetch('/todo', )
+    fetch('/todo')
   }
 
   addTodo (todo) {
