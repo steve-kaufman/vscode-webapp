@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './styles/App.css'
 import Header from './components/Header.jsx'
 import TodoForm from './components/TodoForm'
+import API from './API'
 
 export default class App extends Component {
   constructor (props) {
