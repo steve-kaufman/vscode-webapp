@@ -72,34 +72,34 @@ describe('Todo', () => {
       expect(checkbox).not.toBeNull()
     })
     // TODO names are backwards!!!
-    it('Is not checked by default if completed is false', () => {
+    it('Is checked by default if completed is true', () => {
+      // arrange
       const { queryByTestId, rerender } = todo
-
-      const checkbox = queryByTestId('checkbox')
-
-      expect(checkbox.defaultChecked).toBe(false)
-
       const completedIsTrue = { ...dummyData, completed: true }
       rerender(<Todo
         deleteTodo={deleteTodo}
         setCompleted={setCompleted}
         data={completedIsTrue}
       />)
-
+      // act
+      const checkbox = queryByTestId('checkbox')
+      // assert
       expect(checkbox.defaultChecked).toBe(true)
     })
-    it('Is checked by default if completed is true', () => {
+    it('Is not checked by default if completed is false', () => {
+      // arrange
       const { queryByTestId } = todo
-
+      // act
       const checkbox = queryByTestId('checkbox')
-
+      // assert
       expect(checkbox.defaultChecked).toBe(false)
     })
     it('Calls setCompleted() when checked with true', () => {
+      // arrange
       const { queryByTestId } = todo
-
+      // act
       queryByTestId('checkbox').click()
-
+      // assert
       expect(setCompleted).toHaveBeenCalledTimes(1)
       expect(setCompleted).toHaveBeenCalledWith(dummyData.id, true)
     })
