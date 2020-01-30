@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import './styles/App.css'
 import Header from './components/Header.jsx'
 import TodoForm from './components/TodoForm'
-import API from './API'
+import TodoList from './components/TodoList'
+import API from './api'
 
 export default class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      todos: {}
+      todos: []
     }
     fetch('/todo')
   }
 
   addTodo (todo) {
-    fetch('/todo')
+    API.service('todos').create(todo)
   }
 
   render () {
@@ -25,6 +26,11 @@ export default class App extends Component {
         </header>
         <main>
           <TodoForm onSubmit={this.addTodo.bind(this)} />
+          <TodoList
+            deleteTodo={() => null}
+            setComplete={() => null}
+            todos={this.state.todos}
+          />
         </main>
         <footer></footer>
       </div>

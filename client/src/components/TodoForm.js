@@ -14,7 +14,7 @@ export default class TodoForm extends Component {
 
   render () {
     return (
-      <div data-testid="addTodo">
+      <div data-testid="todoForm">
         <form onSubmit={this.onSubmit.bind(this)}>
           <label htmlFor="title">Title:</label>
           <input data-testid="title" id="title" />

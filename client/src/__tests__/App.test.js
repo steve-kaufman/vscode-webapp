@@ -3,11 +3,12 @@ import { render, cleanup } from '@testing-library/react'
 import TestRenderer from 'react-test-renderer'
 import '@testing-library/jest-dom/extend-expect'
 import App from '../App'
+import API from '../api'
+
+jest.mock('../api')
 
 describe('App', () => {
   let app = null
-
-  const mockFetch = 
 
   afterEach(cleanup)
 
@@ -40,7 +41,24 @@ describe('App', () => {
     expect(footer).not.toBeNull()
   })
 
-  it('Gets todos from REST API', () => {
+  it('Has a TodoForm', () => {
+    // arrange
+    const { queryByTestId } = app
+    // act
+    const todoForm = queryByTestId('todoForm')
+    // assert
+    expect(todoForm).not.toBeNull()
+  })
+  it('Has a TodoList', () => {
+    // arrange
+    const { queryByTestId } = app
+    // act
+    const todoList = queryByTestId('todoList')
+    // assert
+    expect(todoList).not.toBeNull()
+  })
+
+  it('Gets todos from API', () => {
     // arrange
     const { unmount } = app
     unmount()
@@ -61,24 +79,28 @@ describe('App', () => {
   })
 
   describe('addTodo()', () => {
-    it('Calls fetch()', () => {
+    it('Calls API to create Todos', () => {
       // arrange
       app = TestRenderer.create(<App />).getInstance()
       const fakeTodo = { title: 'foo', description: 'bar' }
-      const mockFetch = jest.spyOn(window, 'fetch').mockImplementationOnce(() => {
-        return Promise.resolve({
-          json: () => Promise.resolve(fakeTodo)
-        })
-      })
-      mockFetch.mockClear()
+      const mockCreateFn = jest.fn()
+      const mockService = jest.spyOn(API, 'service').mockImplementationOnce(name => ({
+        create: mockCreateFn
+      }))
+      mockService.mockClear()
       // act
       app.addTodo(fakeTodo)
       // assert
-      expect(mockFetch).toHaveBeenCalledTimes(1)
+      expect(mockService).toHaveBeenCalledTimes(1)
+      expect(mockService).toHaveBeenCalledWith('todos')
+      expect(mockCreateFn).toHaveBeenCalledTimes(1)
+      expect(mockCreateFn).toHaveBeenCalledWith(fakeTodo)
     })
     // TODO test addTodo()
     it('Adds a todo to the TodoList', () => {
       // arrange
+      app = TestRenderer.create(<App />).getInstance()
+      const fakeTodo = { title: 'foo', description: 'bar' }
       // act
       // assert
     })
