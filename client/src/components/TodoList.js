@@ -4,14 +4,15 @@ import Todo from './Todo'
 
 export default class TodoList extends Component {
   render () {
-    const { deleteTodo, setCompleted } = this.props
+    console.log(this.props.setCompleted)
+    // const { deleteTodo, setCompleted } = this.props
     return (
       <div data-testid="todoList">
         {this.props.todos.map((todo, index) => (
           <Todo
             key={index}
-            deleteTodo={deleteTodo}
-            setCompleted={setCompleted}
+            deleteTodo={this.props.deleteTodo}
+            setCompleted={this.props.setCompleted}
             data={todo}
           />
         ))}

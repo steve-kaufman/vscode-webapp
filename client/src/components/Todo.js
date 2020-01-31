@@ -12,6 +12,7 @@ export default class Todo extends Component {
   }
 
   render () {
+    console.log(this.props)
     const { title, description } = this.props.data
     return (
       <div data-testid='todo'>
