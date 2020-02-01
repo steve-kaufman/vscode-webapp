@@ -4,13 +4,14 @@ const fakeTodoList = [
 ]
 const fakeTodo = { id: 7, completed: false, title: 'foo', description: 'bar' }
 
-const find = jest.fn(() => Promise.resolve(fakeTodoList))
+const find = jest.fn(() => Promise.resolve({ data: fakeTodoList }))
 const create = jest.fn(() => Promise.resolve(fakeTodo))
 const remove = jest.fn()
 const patch = jest.fn()
 
 const API = {
   fakeTodoList,
+  fakeTodo,
   find,
   create,
   remove,

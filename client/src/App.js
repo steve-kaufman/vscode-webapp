@@ -35,10 +35,8 @@ export default class App extends Component {
     API.service('todos').remove(id)
     // make a copy of this.state.todos (can't directly modify state)
     const todos = this.state.todos.slice()
-    console.log(todos)
     // find index of todo to be deleted
     const todoIndex = todos.findIndex(todo => todo.id === id)
-    console.log(todoIndex)
     // remove todo from this.state.todos
     todos.splice(todoIndex)
     // set state with new copy of todos array
