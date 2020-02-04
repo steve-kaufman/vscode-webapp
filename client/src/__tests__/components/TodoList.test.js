@@ -24,6 +24,27 @@ describe('TodoList', () => {
     />)
   })
 
+  it('Calls loadTodos() if there are none', () => {
+    // arrange
+    const { rerender } = todoList
+    const mockLoadTodos = jest.fn()
+    mockLoadTodos.mockClear()
+    // act
+    rerender(<TodoList loadTodos={mockLoadTodos} todos={[]} />)
+    // assert
+    expect(mockLoadTodos).toHaveBeenCalledTimes(1)
+  })
+  it('Does not call loadTodos() if there are some', () => {
+    // arrange
+    const { rerender } = todoList
+    const mockLoadTodos = jest.fn()
+    mockLoadTodos.mockClear()
+    // act
+    rerender(<TodoList loadTodos={mockLoadTodos} todos={fakeTodos} />)
+    // assert
+    expect(mockLoadTodos).toHaveBeenCalledTimes(0)
+  })
+
   it('Has todos', () => {
     // arrange
     const { queryAllByTestId } = todoList

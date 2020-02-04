@@ -70,4 +70,10 @@ describe('API', () => {
       expect(API.remove).toBeTruthy()
     })
   })
+
+  describe('authenticate()', () => {
+    it('Exists', () => {
+      expect(API.authenticate).toBeTruthy()
+    })
+  })
 })

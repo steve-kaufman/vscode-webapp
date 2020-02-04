@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './styles/App.css'
 import Header from './components/Header.jsx'
 import TodoForm from './components/TodoForm'
 import TodoList from './components/TodoList'
+import SigninForm from './components/SigninForm'
+import SignupForm from './components/SignupForm'
 import API from './api'
 
 export default class App extends Component {
@@ -54,6 +57,10 @@ export default class App extends Component {
     todos[todoIndex].completed = completed
     // set state with new copy of todos array
     this.setState({ ...this.state, todos })
+  }
+
+  signIn (email, password) {
+    API.authenticate({ strategy: 'local', email, password })
   }
 
   render () {

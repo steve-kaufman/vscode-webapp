@@ -3,7 +3,16 @@ import PropTypes from 'prop-types'
 import Todo from './Todo'
 
 export default class TodoList extends Component {
+  // componentDidMount () {
+  //   if (!this.props.todos === []) {
+  //     this.props.loadTodos()
+  //   }
+  // }
+
   render () {
+    if (this.props.todos === []) {
+      this.props.loadTodos()
+    }
     const { deleteTodo, setCompleted } = this.props
     return (
       <div data-testid="todoList">
@@ -23,5 +32,6 @@ export default class TodoList extends Component {
 TodoList.propTypes = {
   todos: PropTypes.array,
   deleteTodo: PropTypes.func,
-  setCompleted: PropTypes.func
+  setCompleted: PropTypes.func,
+  loadTodos: PropTypes.func
 }

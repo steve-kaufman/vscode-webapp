@@ -26,7 +26,7 @@ export default class Todo extends Component {
         <button
           data-testid='delete-button'
           onClick={this.onDelete.bind(this)}
-        />
+        >X</button>
       </div>
     )
   }

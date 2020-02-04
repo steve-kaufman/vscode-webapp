@@ -8,8 +8,10 @@ const find = jest.fn(() => Promise.resolve({ data: fakeTodoList }))
 const create = jest.fn(() => Promise.resolve(fakeTodo))
 const remove = jest.fn()
 const patch = jest.fn()
+const authenticate = jest.fn()
 
 const API = {
+  authenticate,
   fakeTodoList,
   fakeTodo,
   find,
