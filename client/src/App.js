@@ -14,7 +14,6 @@ export default class App extends Component {
     this.state = {
       todos: []
     }
-    this.loadTodos()
   }
 
   async loadTodos () {
@@ -74,6 +73,7 @@ export default class App extends Component {
           <TodoList
             deleteTodo={this.deleteTodo.bind(this)}
             setCompleted={this.setCompleted.bind(this)}
+            loadTodos={this.loadTodos.bind(this)}
             todos={this.state.todos}
           />
         </main>

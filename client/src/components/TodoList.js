@@ -10,9 +10,6 @@ export default class TodoList extends Component {
   // }
 
   render () {
-    if (this.props.todos === []) {
-      this.props.loadTodos()
-    }
     const { deleteTodo, setCompleted } = this.props
     return (
       <div data-testid="todoList">

@@ -66,17 +66,6 @@ describe('App', () => {
     expect(todoList).not.toBeNull()
   })
 
-  // it('Calls loadTodos() upon instantiation', () => {
-  //   // arrange
-  //   const mockLoadTodos = jest.spyOn(App.prototype, 'loadTodos')
-  //     .mockImplementationOnce(() => null)
-  //   mockLoadTodos.mockClear()
-  //   // act
-  //   app = TestRenderer.create(<App />)
-  //   // assert
-  //   expect(mockLoadTodos).toHaveBeenCalledTimes(1)
-  // })
-
   describe('loadTodos()', () => {
     it('Exists', () => {
       // arrange
@@ -144,7 +133,6 @@ describe('App', () => {
       // arrange
       app = TestRenderer.create(<App />).getInstance()
       const mockService = jest.spyOn(API, 'service')
-      await app.loadTodos()
       mockService.mockClear()
       // act
       await app.deleteTodo(7)
